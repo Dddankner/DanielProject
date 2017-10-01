@@ -48,7 +48,7 @@
                 args.IsValid = true;
         }
     </script>
-    <link href="css/reg.css" rel="stylesheet" />
+    <%--<link href="css/reg.css" rel="stylesheet" />--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <center>

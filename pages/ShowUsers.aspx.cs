@@ -12,8 +12,7 @@ public partial class pages_ShowUsers : System.Web.UI.Page
     {
         Members m1 = (Members)Session["Member"];
         MembersServer ms = new MembersServer();
-        string str = GetStrSql(m1);
-        DataSet ds = ms.Show(str);
+        DataSet ds = GetData(m1);
         GridView1.DataSource = ds;
         GridView1.DataBind();
     }
@@ -30,17 +29,18 @@ public partial class pages_ShowUsers : System.Web.UI.Page
         }
     }
 
-    public static string GetStrSql(Members m1)
+    public static DataSet GetData(Members m1)
     {
-        string strSql = "";
+        DataSet ds = new DataSet();
+        MembersServer ms = new MembersServer();
         if (m1.memberManager)
         {
-            strSql = "SELECT * FROM Members,Cities WHERE Members.CityId=Cities.CityId";
+            ds = ms.ShowAll();
         }
         else
         {
-            strSql = "SELECT * FROM Members,Cities WHERE Members.CityId=Cities.CityId WHERE MemberMail='" + m1.memberMail + "'";
+            ds = ms.ShowMember(m1.memberMail);
         }
-        return strSql;
+        return ds;
     }
 }

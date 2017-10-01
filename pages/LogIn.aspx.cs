@@ -23,10 +23,10 @@ public partial class pages_LogIn : System.Web.UI.Page
         if(!ms.IsMailExist(m))
         {
             if(!ms.Login(m))
-            {                
-                string strSql = "SELECT * FROM Members WHERE MemberMail='" + m.memberMail.Trim() + "'";
-                DataSet ds = new DataSet();
-                ds = Connect.GetDataSet(strSql, "Members");
+            {
+                //string strSql = "SELECT * FROM Members WHERE MemberMail='" + m.memberMail.Trim() + "'";
+                DataSet ds = ms.ShowAll();
+                //ds = Connect.GetDataSet(strSql, "Members");
                 m.memberFname = ds.Tables["Members"].Rows[0]["MemberFname"].ToString();
                 m.MemberLname = ds.Tables["Members"].Rows[0]["MemberLname"].ToString();
                 m.memberMail = ds.Tables["Members"].Rows[0]["MemberMail"].ToString();
@@ -34,6 +34,7 @@ public partial class pages_LogIn : System.Web.UI.Page
                 m.memberHobies = ds.Tables["Members"].Rows[0]["MemberHobbies"].ToString();
                 m.memberPass = ds.Tables["Members"].Rows[0]["MemberPass"].ToString();
                 m.memberPic  = ds.Tables["Members"].Rows[0]["MemberPic"].ToString();
+                m.memberManager = bool.Parse(ds.Tables["Members"].Rows[0]["MemberManager"].ToString());
                 Session["Member"] = m;
                 Response.Redirect("../pages/Main.aspx");
             }

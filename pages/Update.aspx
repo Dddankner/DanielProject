@@ -1,23 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Update.aspx.cs" Inherits="pages_Update" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ocv1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <style type="text/css">
-        .reg td {
-            direction: rtl;
-            height: auto;
-        }
-    </style>
-    <style type="text/css">
-        .txtBox{
-            border-top:hidden;
-            border-right-style:hidden;
-            border-left-style:hidden;
-        }
-        .txtBox:focus{
-            border:none;
-            border-bottom-color:Highlight;
-        }
-    </style>
+    <link href="../Style/Forms.css" rel="stylesheet" />
     <script type="text/javascript" lang="ja">
 
         function ValidateHobbies(source, args) {
@@ -49,7 +33,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <center>
-    <table class="reg">
+<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <table class="tablePopUp">
 
             <tr>
                 <td>
@@ -105,7 +90,11 @@
             </tr>--%>
             <tr>
                 <td>
-                    <asp:TextBox runat="server" placeholder="תאריך לידה" ID="txtDate" CssClass="txtBox"></asp:TextBox>
+                    <%--<asp:TextBox runat="server" placeholder="תאריך לידה" ID="txtDate" CssClass="txtBox"></asp:TextBox>--%>
+                    
+                    <ocv1:CalendarExtender id="Cal" runat="server" TargetControlID="txtDate" PopupButtonID="btnDate" Format="dd/mm/yyyy"></ocv1:CalendarExtender>
+                    <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
+                    <asp:ImageButton ID="btnDate" ImageUrl="~/img/Calicon.png" runat="server" CausesValidation="false"></asp:ImageButton>
                 </td>
                 <td>
                     <asp:Label runat="server" ID="lblDate" Text="תאריך לידה"></asp:Label>
@@ -117,6 +106,8 @@
                         <asp:ListItem Text="זכר"></asp:ListItem>
                         <asp:ListItem Text="נקבה"></asp:ListItem>
                     </asp:RadioButtonList>
+                    
+
                 </td>
                 <td>
                     <asp:Label runat="server" ID="lblGender" Text="מגדר"></asp:Label>
@@ -150,14 +141,6 @@
                 </td>
                 <td>
                     <asp:Label runat="server" ID="lblCity" Text="עיר"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:TextBox runat="server" ID="txtNotes"></asp:TextBox>
-                </td>
-                <td>
-                    <asp:Label runat="server" ID="lblNote" Text="הערות"></asp:Label>
                 </td>
             </tr>
             <tr>

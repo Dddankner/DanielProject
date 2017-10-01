@@ -12,6 +12,7 @@ public partial class pages_Update : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
+        btnDate.Attributes.Add("style", "height:25px; width:25px");
         fill();
     }
     public void fill()

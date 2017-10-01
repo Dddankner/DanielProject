@@ -39,8 +39,16 @@ public class MembersServer
         return int.Parse(obj.ToString()) < 1;
     }
 
-    public DataSet Show(string strSql)
+    public DataSet ShowAll()
     { 
+        string strSql = strSql = "SELECT * FROM Members,Cities WHERE Members.CityId=Cities.CityId";
+        DataSet ds = Connect.GetDataSet(strSql, "Members");
+        return ds;
+    }
+
+    public DataSet ShowMember(string memberMail)
+    {
+        string strSql = strSql = "SELECT * FROM Members,Cities WHERE Members.CityId=Cities.CityId AND MemberMail='" + memberMail + "'";
         DataSet ds = Connect.GetDataSet(strSql, "Members");
         return ds;
     }
