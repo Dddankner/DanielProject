@@ -15,6 +15,7 @@ public partial class pages_ShowUsers : System.Web.UI.Page
         DataSet ds = GetData(m1);
         GridView1.DataSource = ds;
         GridView1.DataBind();
+        GridView1.Attributes.Add("style", "margin-top:20px; direction:rtl");
     }
 
     protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -42,5 +43,26 @@ public partial class pages_ShowUsers : System.Web.UI.Page
             ds = ms.ShowMember(m1.memberMail);
         }
         return ds;
+    }
+
+
+
+
+
+    protected void UpdateBtn_Click(object sender, ImageClickEventArgs e)
+    {
+        Response.Redirect("../pages/Update.aspx");
+    }
+
+    protected void DeleteBtn_Click(object sender, ImageClickEventArgs e)
+    {
+        foreach (GridViewRow r in GridView1.Rows)
+        {
+            if (r.FindControl("DeleteBtn") == sender)
+            {
+                string mail = r.Cells[2].ToString();
+                MembersServer.DeleteMember(mail);
+            }
+        }
     }
 }

@@ -2,8 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="GridView1_RowDataBound">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server" >
+    <center>
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="GridView1_RowDataBound" >
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="MemberFname" HeaderText="שם פרטי" />
@@ -18,6 +19,16 @@
                     <asp:Image ID="MemberImage" runat="server" Height="50px" Width="50px" />
                 </ItemTemplate>
             </asp:TemplateField>
+            <asp:TemplateField HeaderText="עדכן">
+                <ItemTemplate>
+                    <asp:ImageButton ID="UpdateBtn" runat="server" ImageUrl="~/img/UpdatePic.png" OnClick="UpdateBtn_Click" Height="35px" Width="35px" />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="מחק">
+                <ItemTemplate>
+                    <asp:ImageButton ID="DeleteBtn" runat="server" ImageUrl="~/img/deletePic.png" OnClick="DeleteBtn_Click" Height="35px" Width="35px" />
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
         <EditRowStyle BackColor="#2461BF" />
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -30,5 +41,6 @@
         <SortedDescendingCellStyle BackColor="#E9EBEF" />
         <SortedDescendingHeaderStyle BackColor="#4870BE" />
 </asp:GridView>
+        </center>
 </asp:Content>
 

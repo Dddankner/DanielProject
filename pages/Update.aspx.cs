@@ -14,6 +14,13 @@ public partial class pages_Update : System.Web.UI.Page
     {
         btnDate.Attributes.Add("style", "height:25px; width:25px");
         fill();
+        DataSet ds = new DataSet();
+        ds = CitiesServer.GetCityList();
+        cities.DataSource = ds;
+        cities.DataTextField = "CityName";
+        cities.DataValueField = "CityId";
+        cities.DataBind();
+        cities.Items.Insert(0, new ListItem("-בחר עיר-"));
     }
     public void fill()
     {

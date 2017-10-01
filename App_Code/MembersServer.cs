@@ -67,6 +67,12 @@ public class MembersServer
         return pic;
     }
 
+    public static void DeleteMember(string mail)
+    {
+        string strSql = "DELETE FROM Members WHERE MemberMail ='" + mail.Trim() + "'";
+        Connect.InsertUpdateDelete(strSql);
+    }
+
     
     
 
