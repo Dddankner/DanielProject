@@ -16,6 +16,11 @@
       <input type="radio" name="radio"/>
       <div class="control__indicator"></div>
     </label>
+       <table border="1">
+           <tr>
+               <tb>dfd</tb>
+           </tr>
+       </table>
     </form>
 </body>
 </html>
