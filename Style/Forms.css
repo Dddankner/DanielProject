@@ -1,0 +1,30 @@
+﻿/*.reg td {
+    padding: 7px;
+    direction: rtl;
+    height: auto;
+}*/
+    
+.txtBox {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+    transition:0.5s;
+}
+
+    .txtBox:focus {
+        border-bottom-color: blue;
+    }
+
+.tablePopUp {
+    margin-top: 25px;
+    background-color: white;
+    box-shadow: 5px 5px 10px #888888;
+    padding: 20px;
+}
+    .tablePopUp td {
+        padding: 7px;
+        direction: rtl;
+        height: auto;
+    }
+
+
