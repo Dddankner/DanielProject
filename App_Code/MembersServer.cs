@@ -21,8 +21,8 @@ public class MembersServer
 
     public void Register(Members m)
     {
-        string strSql = "INSERT INTO Members(MemberFname, MemberLname, MemberPass, CityId, MemberGender, MemberHobbies, MemberPic, MemberDate, MemberMail)";
-        strSql += "VALUES('" + m.memberFname.Trim() + "', '" + m.MemberLname.Trim() + "', '" + m.memberPass.Trim() + "'," + m.cityId + ",'" + m.memberGender.Trim() + "','" + m.memberHobies.Trim() + "','" + m.memberPic.Trim() + "','" + m.memberDate + "','" + m.memberMail.Trim() + "')";
+        string strSql = "INSERT INTO Members(MemberFname, MemberLname, MemberPass, CityId, MemberGender, MemberHobbies, MemberPic, MemberDate, MemberMail, MemberManager, MemberStatus)";
+        strSql += "VALUES('" + m.memberFname.Trim() + "', '" + m.MemberLname.Trim() + "', '" + m.memberPass.Trim() + "'," + m.cityId + ",'" + m.memberGender.Trim() + "','" + m.memberHobies.Trim() + "','" + m.memberPic.Trim() + "','" + m.memberDate + "','" + m.memberMail.Trim() + "','"+true+"','פעיל')";
         Connect.InsertUpdateDelete(strSql);
     }
 
@@ -69,7 +69,7 @@ public class MembersServer
 
     public static void DeleteMember(string mail)
     {
-        string strSql = "DELETE FROM Members WHERE MemberMail ='" + mail.Trim() + "'";
+        string strSql = "UPDATE Members SET MemberStatus='לא פעיל' WHERE MemberMail='" + mail + "'";
         Connect.InsertUpdateDelete(strSql);
     }
 

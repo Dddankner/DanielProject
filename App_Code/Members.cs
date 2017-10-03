@@ -19,6 +19,7 @@ public class Members
     public DateTime memberDate { get; set; }
     public string memberMail { get; set; }
     public bool memberManager { get; set; }
+    public string MemberStatus { get; set; }
 
     public Members()
     {
@@ -36,5 +37,6 @@ public class Members
         this.memberDate = d;
         this.memberMail = m;
         this.memberManager = false;
+        this.MemberStatus = "פעיל";
     }
 }

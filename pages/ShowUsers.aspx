@@ -1,8 +1,27 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ShowUsers.aspx.cs" Inherits="pages_ShowUsers" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <style type="text/css">
+        .imgCss {
+            height: 35px;
+            width: 35px;
+        }
+
+            .imgCss:hover {
+                cursor: pointer;
+            }
+    </style>
+    <script type="text/javascript" lang="ja">
+        function UpdateRed(mail) {
+            location.href = "../pages/Update.aspx?mail=" + mail + "";
+        }
+        function DeleteRed(mail)
+        {
+            location.href = "../pages/Delete.aspx?mail=" + mail + "";
+        }
+    </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server" >
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <center>
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="GridView1_RowDataBound" >
         <AlternatingRowStyle BackColor="White" />
@@ -21,12 +40,13 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="עדכן">
                 <ItemTemplate>
-                    <asp:ImageButton ID="UpdateBtn" runat="server" ImageUrl="~/img/UpdatePic.png" OnClick="UpdateBtn_Click" Height="35px" Width="35px" />
+                    <asp:Image ID="ImageUpdate" runat="server" ImageUrl="~/img/UpdatePic.png" CssClass="imgCss"></asp:Image>
+                    <%--<asp:Image ID="UpdateBtn" runat="server" ImageUrl="~/img/UpdatePic.png" OnClick="UpdateBtn_Click" Height="35px" Width="35px" />--%>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="מחק">
                 <ItemTemplate>
-                    <asp:ImageButton ID="DeleteBtn" runat="server" ImageUrl="~/img/deletePic.png" OnClick="DeleteBtn_Click" Height="35px" Width="35px" />
+                    <asp:Image ID="DeleteBtn" runat="server" ImageUrl="~/img/deletePic.png" CssClass="imgCss" />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>

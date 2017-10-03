@@ -92,7 +92,7 @@
                 <td>
                     <%--<asp:TextBox runat="server" placeholder="תאריך לידה" ID="txtDate" CssClass="txtBox"></asp:TextBox>--%>
                     
-                    <ocv1:CalendarExtender id="Cal" runat="server" TargetControlID="txtDate" PopupButtonID="btnDate" Format="dd/mm/yyyy"></ocv1:CalendarExtender>
+                    <ocv1:CalendarExtender id="Cal" runat="server" TargetControlID="txtDate" PopupButtonID="btnDate" Format="dd/MM/yyyy"></ocv1:CalendarExtender>
                     <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
                     <asp:ImageButton ID="btnDate" ImageUrl="~/img/Calicon.png" runat="server" CausesValidation="false"></asp:ImageButton>
                 </td>

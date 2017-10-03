@@ -16,19 +16,41 @@ public partial class pages_ShowUsers : System.Web.UI.Page
         GridView1.DataSource = ds;
         GridView1.DataBind();
         GridView1.Attributes.Add("style", "margin-top:20px; direction:rtl");
+
     }
 
     protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-        if(e.Row.RowType == DataControlRowType.DataRow)
+        if (e.Row.RowType == DataControlRowType.DataRow)
         {
             GridViewRow r1 = e.Row;
             string mail = r1.Cells[2].Text;
             MembersServer ms = new MembersServer();
             string pic = ms.PicUrl(mail);
-            ((Image)r1.FindControl("MemberImage")).ImageUrl = "../MembersImg/"+pic+"";
+            ((Image)r1.FindControl("MemberImage")).ImageUrl = "../MembersImg/" + pic + "";
+        }
+
+
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            if (GridView1.Rows[i].Cells[9].FindControl("DeleteBtn") is Image)
+            {
+                ((Image)GridView1.Rows[i].Cells[9].FindControl("DeleteBtn")).Attributes.Add("onclick", "DeleteRed('" + GridView1.Rows[i].Cells[2].Text + "')");
+            }
+        }
+
+
+
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            if (GridView1.Rows[i].Cells[8].FindControl("ImageUpdate") is Image)
+            {
+                ((Image)GridView1.Rows[i].Cells[9].FindControl("ImageUpdate")).Attributes.Add("onclick", "UpdateRed('" + GridView1.Rows[i].Cells[2].Text.Trim() + "')");
+            }
         }
     }
+
+
 
     public static DataSet GetData(Members m1)
     {
@@ -61,7 +83,7 @@ public partial class pages_ShowUsers : System.Web.UI.Page
             if (r.FindControl("DeleteBtn") == sender)
             {
                 string mail = r.Cells[2].ToString();
-                MembersServer.DeleteMember(mail);
+
             }
         }
     }

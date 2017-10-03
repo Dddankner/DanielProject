@@ -9,22 +9,31 @@ using System.Data.OleDb;
 
 public partial class pages_Update : System.Web.UI.Page
 {
-    
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        btnDate.Attributes.Add("style", "height:25px; width:25px");
-        fill();
-        DataSet ds = new DataSet();
-        ds = CitiesServer.GetCityList();
-        cities.DataSource = ds;
-        cities.DataTextField = "CityName";
-        cities.DataValueField = "CityId";
-        cities.DataBind();
-        cities.Items.Insert(0, new ListItem("-בחר עיר-"));
+        if (Request.QueryString["mail"] != null && Request.QueryString["mail"].ToString() != "")
+        {
+            string mail = Request.QueryString["mail"].ToString();
+            btnDate.Attributes.Add("style", "height:25px; width:25px");
+            fill(mail);
+            DataSet ds = new DataSet();
+            ds = CitiesServer.GetCityList();
+            cities.DataSource = ds;
+            cities.DataTextField = "CityName";
+            cities.DataValueField = "CityId";
+            cities.DataBind();
+            Cal.EndDate = DateTime.Now.AddYears(-15);
+            cities.Items.Insert(0, new ListItem("-בחר עיר-"));
+        }
+        else
+            Response.Write("luagdf");
     }
-    public void fill()
+    public void fill(string mail)
     {
-        Members m = (Members)Session["Member"];
+        MembersServer ms = new MembersServer();
+        DataSet ds = ms.ShowMember(mail);
+        Members m = CreateMember(ds);
         txtfName.Text = m.memberFname.ToString().Trim();
         txtlName.Text = m.MemberLname.ToString().Trim();
         txtMail.Text = m.memberMail.ToString().Trim();
@@ -32,7 +41,21 @@ public partial class pages_Update : System.Web.UI.Page
         txtPass.Attributes.Add("value", m.memberPass.ToString().Trim());
         txtRePass.Attributes.Add("value", m.memberPass.ToString().Trim());
         txtRePass.Text = m.memberPass.ToString().Trim();
-        txtDate.Text = m.memberDate.ToString().Trim();
+        txtDate.Text = m.memberDate.ToShortDateString().Trim();
+    }
+
+    public Members CreateMember(DataSet ds)
+    {
+        Members m = new Members();
+        m.memberFname = ds.Tables["Members"].Rows[0]["MemberFname"].ToString();
+        m.MemberLname = ds.Tables["Members"].Rows[0]["MemberLname"].ToString();
+        m.memberMail = ds.Tables["Members"].Rows[0]["MemberMail"].ToString();
+        m.memberGender = ds.Tables["Members"].Rows[0]["MemberGender"].ToString();
+        m.memberHobies = ds.Tables["Members"].Rows[0]["MemberHobbies"].ToString();
+        m.memberPass = ds.Tables["Members"].Rows[0]["MemberPass"].ToString();
+        m.memberPic = ds.Tables["Members"].Rows[0]["MemberPic"].ToString();
+        m.memberManager = bool.Parse(ds.Tables["Members"].Rows[0]["MemberManager"].ToString());
+        return m;
     }
 
     protected void btnSend_Click(object sender, EventArgs e)
